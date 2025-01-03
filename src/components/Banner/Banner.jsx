@@ -1,4 +1,4 @@
-import BannerImage from '../../assets/banner-1.jpg';
+import BannerImage from '../../assets/banner1.jpeg';
 
 
 
