@@ -36,6 +36,7 @@ function CoinDetailsPage(){
                 alt={coin?.name}
                 src={coin?.image?.large}
                 className="h-52 mb-5"
+               
             />
 
             <h1

@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router";
 import MainLayout from "../../pages/Layout";
 import { lazy,Suspense } from "react";
 import MyLoader from "../pageLoader/PageLoader";
+import CustomErrorBoundary from "../ErrorBoundary/CustomErrorBoundary";
 
 
 const Home = lazy(()=> import('../../pages/Home'));
@@ -10,6 +11,7 @@ const CoinDetailsPage = lazy(()=> import('../../pages/CoinDetailsPage'));
 
 function Routing(){
     return (
+        <CustomErrorBoundary>
         <Routes>
             <Route path="/" element= {<MainLayout/>} >
                 <Route index element = {
@@ -27,6 +29,7 @@ function Routing(){
             
           
         </Routes>
+        </CustomErrorBoundary>
     )
 }
 
