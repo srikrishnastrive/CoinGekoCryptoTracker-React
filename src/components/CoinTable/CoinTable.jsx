@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import { CurrencyContext } from "../../context/CurrenencyContext";
 import fetchCoinData from "../../services/fetchCoinData";
 import { useNavigate } from "react-router";
+import MyLoader from "../pageLoader/PageLoader";
 
 
 function CoinTable () {
@@ -23,8 +24,8 @@ function CoinTable () {
         return <div>{error.message}</div>
     }
 
-    function handleCoinRedirect(id){
-        navigate(`/details/${id}`);
+    function handleCoinRedirect(coinId){
+        navigate(`/details/${coinId}`);
     }
    
     return (
@@ -46,7 +47,7 @@ function CoinTable () {
             </div>
 
             <div className="flex flex-col w-[80vw] mx-auto">
-                {isLoading && <div>Loading...</div>}
+                {isLoading && <div><MyLoader/></div>}
                 {data && data.map((coin) => {
                     return (
                         <div onClick={() => handleCoinRedirect(coin.id)} key={coin.id} className="w-full bg-transparent text-white flex py-4 px-2 font-semibold items-center justify-between cursor-pointer">

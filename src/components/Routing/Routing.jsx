@@ -1,15 +1,28 @@
 import { Route, Routes } from "react-router";
-import Home from "../../pages/Home";
-import CoinDetailsPage from "../../pages/CoinDetailsPage";
 import MainLayout from "../../pages/Layout";
+import { lazy,Suspense } from "react";
+import MyLoader from "../pageLoader/PageLoader";
+
+
+const Home = lazy(()=> import('../../pages/Home'));
+const CoinDetailsPage = lazy(()=> import('../../pages/CoinDetailsPage'));
 
 
 function Routing(){
     return (
         <Routes>
             <Route path="/" element= {<MainLayout/>} >
-                <Route index element = {<Home />} />
-                <Route path='/details/:coinId' element = {<CoinDetailsPage />} />
+                <Route index element = {
+                     <Suspense fallback = {<MyLoader/>}>
+                            <Home />
+                 </Suspense>
+                    
+                    } />
+                <Route path='/details/:coinId' element = {
+                    <Suspense fallback = {<MyLoader/>}>
+                        <CoinDetailsPage />
+                    </Suspense>
+                    } />
             </Route>
             
           
