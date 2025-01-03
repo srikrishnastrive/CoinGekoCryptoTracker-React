@@ -3,11 +3,13 @@ import { useContext, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { CurrencyContext } from "../../context/CurrenencyContext";
 import fetchCoinData from "../../services/fetchCoinData";
+import { useNavigate } from "react-router";
 
 
 function CoinTable () {
     const {currency} = useContext(CurrencyContext);
     const [page,setPage] = useState(1);
+    const navigate = useNavigate();
     const {data,isLoading,isError,error,isFetching} = useQuery(['coins',page,currency],()=> fetchCoinData(page,currency),{
         // retry : 2,
         // retryDelay : 1000,
@@ -19,6 +21,10 @@ function CoinTable () {
    
     if (isError){
         return <div>{error.message}</div>
+    }
+
+    function handleCoinRedirect(id){
+        navigate(`/details/${id}`);
     }
    
     return (
